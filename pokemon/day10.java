@@ -9,14 +9,10 @@ class Pokemon {
     protected String owner;
     protected List<String> skill;
 
-    public Pokemon() {
-
-    }
-
     public Pokemon(String owner, String skill) {
         this.owner = owner;
         this.skill = List.of(skill.split("/"));
-        System.out.println("포켓몬 생성됨");
+        System.out.print("포켓몬 생성됨 : ");
         count += 1;
 
     }
@@ -41,12 +37,10 @@ class Pokemon {
 class Pikachu extends Pokemon {
     private String name;
 
-    public Pikachu() {
-
-    }
-
-    public Pikachu(String owner, String skill) {
+    public Pikachu(String owner, String skill, String name) {
         super(owner, skill);
+        this.name = "피카츄";
+        System.out.println(this.name);
     }
 
     public void setName(String name) {
@@ -66,8 +60,10 @@ class Pikachu extends Pokemon {
 class Pairi extends Pokemon {
     private String name;
 
-    public Pairi(String owner, String skill) {
+    public Pairi(String owner, String skill, String name) {
         super(owner, skill);
+        this.name = "파이리";
+        System.out.println(this.name);
     }
 
     public void setName(String name) {
@@ -87,8 +83,10 @@ class Pairi extends Pokemon {
 class Ggobugi extends Pokemon {
     private String name;
 
-    public Ggobugi(String owner, String skill) {
+    public Ggobugi(String owner, String skill, String name) {
         super(owner, skill);
+        this.name = "꼬부기";
+        System.out.println(this.name);
     }
 
     public void setName(String name) {
@@ -118,26 +116,33 @@ public class day10 {
                 System.out.print("1) 피카츄 2) 꼬부기 3) 파이리 : ");
                 int pokemon = in.nextInt();
                 if (pokemon == 1) {
-                    Pikachu p = new Pikachu();
                     System.out.print("플레이어 이름 입력 : ");
-                    p.setOwner(in.nextLine());
+                    String myowner = in.nextLine();
                     in.nextLine();
                     System.out.print("사용 가능한 기술 입력(/로 구분하여 입력) : ");
-                    p.setSkill(in.nextLine());
+                    String myskill = in.nextLine();
+                    Pikachu p = new Pikachu(myowner, myskill, "피카츄");
                 } else if (pokemon == 2) {
-                    Pikachu pi = new Pikachu();
                     System.out.print("플레이어 이름 입력 : ");
-                    pi.setOwner(in.nextLine());
+                    String myowner = in.nextLine();
                     in.nextLine();
                     System.out.print("사용 가능한 기술 입력(/로 구분하여 입력) : ");
-                    pi.setSkill(in.nextLine());
+                    String myskill = in.nextLine();
+                    Pairi p = new Pairi(myowner, myskill, "피카츄");
                 } else if (pokemon == 3){
-                    Pikachu g = new Pikachu();
                     System.out.print("플레이어 이름 입력 : ");
-                    g.setOwner(in.nextLine());
+                    String myowner = in.nextLine();
                     in.nextLine();
                     System.out.print("사용 가능한 기술 입력(/로 구분하여 입력) : ");
-                    g.setSkill(in.nextLine());
+                    String myskill = in.nextLine();
+                    Ggobugi p = new Ggobugi(myowner, myskill, "피카츄");
+                }
+                System.out.println("1) 정보조회 2) 공격");
+                int num = in.nextInt();
+                if () {
+                }
+                else if (num == 2){
+                    p.getSkill
                 }
 
             }
