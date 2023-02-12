@@ -32,6 +32,11 @@ class Pokemon {
     public List<String> getSkill() {
         return skill;
     }
+
+    public void info() {
+        System.out.printf("%s의 포켓몬이 사용 가능한 스킬입니다.", owner);
+        System.out.println(skill);
+    }
 }
 
 class Pikachu extends Pokemon {
@@ -50,8 +55,9 @@ class Pikachu extends Pokemon {
     public String getName() {
         return "피카츄";
     }
+
     public void attack(int num) {
-        System.out.printf("%s의 %s가 %s 공격 시전\n", this.owner, name, skill.get(num));
+        System.out.printf("%s의 %s가 %s 공격 시전\n", owner, name, skill.get(num-1));
     }
 }
 
@@ -71,8 +77,9 @@ class Pairi extends Pokemon {
     public String getName() {
         return "파이리";
     }
+
     public void attack(int num) {
-        System.out.printf("%s의 %s가 %s 공격 시전\n", owner, name, skill.get(num));
+        System.out.printf("%s의 %s가 %s 공격 시전\n", owner, name, skill.get(num-1));
     }
 }
 
@@ -92,8 +99,9 @@ class Ggobugi extends Pokemon {
     public String getName() {
         return "꼬부기";
     }
+
     public void attack(int num) {
-        System.out.printf("%s의 %s가 %s 공격 시전\n", owner, name, skill.get(num));
+        System.out.printf("%s의 %s가 %s 공격 시전\n", owner, name, skill.get(num - 1));
     }
 }
 
@@ -112,17 +120,16 @@ public class day10 {
                 int pokemon = in.nextInt();
                 if (pokemon == 1) {
                     System.out.print("플레이어 이름 입력 : ");
-                    String myowner = in.nextLine();
                     in.nextLine();
+                    String myowner = in.nextLine();
                     System.out.print("사용 가능한 기술 입력(/로 구분하여 입력) : ");
                     String myskill = in.nextLine();
                     Pikachu p = new Pikachu(myowner, myskill, "피카츄");
                     System.out.println("1) 정보조회 2) 공격");
                     int num = in.nextInt();
                     if (num == 1) {
-
-                    }
-                    else if (num == 2){
+                        p.info();
+                    } else if (num == 2) {
                         System.out.println(p.getSkill());
                         System.out.print("공격 번호 선택 : ");
                         int attack_menu = in.nextInt();
@@ -130,20 +137,38 @@ public class day10 {
                     }
                 } else if (pokemon == 2) {
                     System.out.print("플레이어 이름 입력 : ");
-                    String myowner = in.nextLine();
                     in.nextLine();
+                    String myowner = in.nextLine();
                     System.out.print("사용 가능한 기술 입력(/로 구분하여 입력) : ");
                     String myskill = in.nextLine();
                     Pairi p = new Pairi(myowner, myskill, "피카츄");
-                } else if (pokemon == 3){
+                    System.out.println("1) 정보조회 2) 공격");
+                    int num = in.nextInt();
+                    if (num == 1) {
+                        p.info();
+                    } else if (num == 2) {
+                        System.out.println(p.getSkill());
+                        System.out.print("공격 번호 선택 : ");
+                        int attack_menu = in.nextInt();
+                        p.attack(attack_menu);
+                    }
+                } else if (pokemon == 3) {
                     System.out.print("플레이어 이름 입력 : ");
-                    String myowner = in.nextLine();
                     in.nextLine();
+                    String myowner = in.nextLine();
                     System.out.print("사용 가능한 기술 입력(/로 구분하여 입력) : ");
                     String myskill = in.nextLine();
                     Ggobugi p = new Ggobugi(myowner, myskill, "피카츄");
-                }
-
+                    System.out.println("1) 정보조회 2) 공격");
+                    int num = in.nextInt();
+                    if (num == 1) {
+                        p.info();
+                    } else if (num == 2) {
+                        System.out.println(p.getSkill());
+                        System.out.print("공격 번호 선택 : ");
+                        int attack_menu = in.nextInt();
+                        p.attack(attack_menu);
+                    }
                 }
 
             }
@@ -151,4 +176,6 @@ public class day10 {
         }
 
     }
+
+}
 
