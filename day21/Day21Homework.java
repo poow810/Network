@@ -3,6 +3,7 @@ package day21;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static day21.ShapeTest.findShapes;
 
@@ -43,13 +44,12 @@ class Shape {
 
 
 class ShapeTest {
-    static List<Shape> findShapes(List<Shape> shape, String type, String color, Double area) {
+    public static List<Shape> findShapes(List<Shape> shapes, Predicate<Shape> p) {
         List<Shape> shape1 = new ArrayList<>();
-        for (Shape types_colors_areas : shape) {
-            if (types_colors_areas.getType().equals(type)) {
+        for (Shape types_colors_areas : shapes) {
+            if (p.test(types_colors_areas)) {
                 shape1.add(types_colors_areas);
-            } else if (types_colors_areas.getColor().equals(color) && types_colors_areas.getArea() <= area)
-                shape1.add(types_colors_areas);
+            }
         }
         return shape1;
     }
@@ -57,10 +57,10 @@ class ShapeTest {
 
 public class Day21Homework {
     public static void main(String[] args) {
-        List<Shape> find_type = findShapes(Shape.shape, "사각형", "", 0.0);
+        List<Shape> find_type = findShapes(Shape.shape, c-> c.getType().equals("사각형"));
         System.out.println("사각형 : " + find_type);
 
-        List<Shape> find_color_area = findShapes(Shape.shape, "", "빨간색", 12.0);
+        List<Shape> find_color_area = findShapes(Shape.shape, c-> c.getColor().equals("빨간색") && c.getArea() <= 12.0);
         System.out.println("빨간 도형(면적<=12.0) : " + find_color_area);
     }
 
