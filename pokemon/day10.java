@@ -3,32 +3,19 @@ package pokemon;
 import java.util.List;
 import java.util.Scanner;
 
-class Pokemon {
+class Pokemon {     // abstract로 객체를 생성 못하는 추상 클래스로 만들어도 된다.
 
-    static int count = 0;
+    public static int count = 0;
     protected String owner;
     protected List<String> skill;
 
     public Pokemon(String owner, String skill) {
         this.owner = owner;
-        this.skill = List.of(skill.split("/"));
+        this.skill = List.of(skill.split("/")); // split으로 스킬을 배열로 만들고 리스트에 다시 담음
         System.out.print("포켓몬 생성됨 : ");
         count += 1;
 
     }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setSkill(String skill) {
-        this.skill = List.of(skill.split("/"));
-    }
-
     public List<String> getSkill() {
         return skill;
     }
@@ -40,20 +27,12 @@ class Pokemon {
 }
 
 class Pikachu extends Pokemon {
-    private String name;
+    private final String name;
 
     public Pikachu(String owner, String skill, String name) {
         super(owner, skill);
         this.name = "피카츄";
         System.out.println(this.name);
-    }
-
-    public void setName(String name) {
-        this.name = "피카츄";
-    }
-
-    public String getName() {
-        return "피카츄";
     }
 
     public void attack(int num) {
@@ -62,20 +41,12 @@ class Pikachu extends Pokemon {
 }
 
 class Pairi extends Pokemon {
-    private String name;
+    private final String name;
 
     public Pairi(String owner, String skill, String name) {
         super(owner, skill);
         this.name = "파이리";
         System.out.println(this.name);
-    }
-
-    public void setName(String name) {
-        this.name = "파이리";
-    }
-
-    public String getName() {
-        return "파이리";
     }
 
     public void attack(int num) {
@@ -84,20 +55,12 @@ class Pairi extends Pokemon {
 }
 
 class Ggobugi extends Pokemon {
-    private String name;
+    private final String name;
 
     public Ggobugi(String owner, String skill, String name) {
         super(owner, skill);
         this.name = "꼬부기";
         System.out.println(this.name);
-    }
-
-    public void setName(String name) {
-        this.name = "꼬부기";
-    }
-
-    public String getName() {
-        return "꼬부기";
     }
 
     public void attack(int num) {
@@ -171,6 +134,8 @@ public class day10 {
                     }
                 }
 
+            }else{
+                System.out.println("메뉴에서 골라주세요");
             }
 
         }

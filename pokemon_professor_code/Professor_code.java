@@ -1,4 +1,4 @@
-package professor_code;
+package pokemon_professor_code;
 
 import java.util.Scanner;
 
