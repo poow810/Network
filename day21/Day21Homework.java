@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static day21.ShapeTest.findShapesByColorNArea;
-import static day21.ShapeTest.findShapesByType;
+import static day21.ShapeTest.findShapes;
 
 class Shape {
     private String type;
@@ -31,7 +30,7 @@ class Shape {
     }
 
     public String toString() {
-        return type + "(" + color + ", " + area+")";
+        return type + "(" + color + ", " + area + ")";
     }
 
     public static final ArrayList<Shape> shape = new ArrayList<>(Arrays.asList(
@@ -44,31 +43,24 @@ class Shape {
 
 
 class ShapeTest {
-    static List<Shape> findShapesByType(List<Shape> shape, String type) {
+    static List<Shape> findShapes(List<Shape> shape, String type, String color, Double area) {
         List<Shape> shape1 = new ArrayList<>();
-        for (Shape types : shape) {
-            if (types.getType().equals(type))
-                shape1.add(types);
+        for (Shape types_colors_areas : shape) {
+            if (types_colors_areas.getType().equals(type)) {
+                shape1.add(types_colors_areas);
+            } else if (types_colors_areas.getColor().equals(color) && types_colors_areas.getArea() <= area)
+                shape1.add(types_colors_areas);
         }
         return shape1;
-    }
-
-    static List<Shape> findShapesByColorNArea(List<Shape> shape, String color, Double area) {
-        List<Shape> shape2 = new ArrayList<>();
-        for (Shape color_areas : shape) {
-            if (color_areas.getColor().equals(color) && color_areas.getArea()<= 12.0)
-                shape2.add(color_areas);
-        }
-        return shape2;
     }
 }
 
 public class Day21Homework {
     public static void main(String[] args) {
-        List<Shape> find_type = findShapesByType(Shape.shape, "사각형");
+        List<Shape> find_type = findShapes(Shape.shape, "사각형", "", 0.0);
         System.out.println("사각형 : " + find_type);
 
-        List<Shape> find_color_area = findShapesByColorNArea(Shape.shape, "빨간색", 12.0);
+        List<Shape> find_color_area = findShapes(Shape.shape, "", "빨간색", 12.0);
         System.out.println("빨간 도형(면적<=12.0) : " + find_color_area);
     }
 
