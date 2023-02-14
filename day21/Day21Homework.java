@@ -7,10 +7,10 @@ import java.util.function.Predicate;
 
 import static day21.ShapeTest.findShapes;
 
-class Shape {
-    private String type;
-    private String color;
-    private Double area;
+class Shape{
+    private final String  type;
+    private final String color;
+    private final Double area;
 
     public Shape(String type, String color, Double area) {
         this.type = type;

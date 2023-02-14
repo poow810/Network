@@ -41,9 +41,9 @@ public class SimpleEchoClient {
             } catch (IOException ex) {
                 System.out.println("입출력 예외 발생");
             } finally {  //자원 해제
-                clientSocket.close();
-                pw.close();
-                br.close();
+                if (clientSocket !=null) clientSocket.close();
+                if (pw != null) pw.close();
+                if (br != null) br.close();
             }
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);

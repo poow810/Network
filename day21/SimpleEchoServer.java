@@ -1,6 +1,5 @@
 package day21;
 
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,8 +29,8 @@ public class SimpleEchoServer {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } finally {
-                br.close();
-                pw.close();
+                if (br != null) br.close();
+                if (pw != null) pw.close();
             }
         } catch (IOException ex) {
             System.out.println("접속 실패");
