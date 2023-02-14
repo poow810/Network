@@ -7,10 +7,9 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class SelfClient {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         System.out.println("셀프 클라이언트 시작됨");
-        InetAddress localAddress = InetAddress.getLocalHost();
-        try{
+        try {
             Socket clientSocket = null;
             PrintWriter pw = null;
             BufferedReader br = null;
@@ -22,7 +21,7 @@ public class SelfClient {
                 System.out.println("서버에 연결됨");
                 Scanner in = new Scanner(System.in);
                 while (true){
-                    System.out.println("전송 메세지 입력 : ");
+                    System.out.print("전송 메세지 입력 : ");
                     String line= in.nextLine();
                     if ("exit".equalsIgnoreCase(line)){
                         break;
@@ -33,9 +32,9 @@ public class SelfClient {
             } catch (IOException e) {
                 System.out.println("입출력 예외 발생");
             } finally {
-                clientSocket.close();
-                pw.close();
-                br.close();
+                    clientSocket.close();
+                    pw.close();
+                    br.close();
             }
 
         } catch (IOException e){
