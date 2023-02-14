@@ -1,2 +1,4 @@
-package first;public class Soldier {
+package first;
+
+public class Soldier {
 }
