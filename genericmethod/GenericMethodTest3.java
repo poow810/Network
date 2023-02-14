@@ -1,4 +1,4 @@
-package second;
+package genericmethod;
 
 class Soldier implements Comparable{
     String name;

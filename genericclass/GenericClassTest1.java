@@ -1,4 +1,4 @@
-package first;
+package genericclass;
 
 public class GenericClassTest1 {
     public static void main(String[] args) {

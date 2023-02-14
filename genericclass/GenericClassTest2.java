@@ -1,4 +1,4 @@
-package first;
+package genericclass;
 
 class Dp<K, V>{
     private K name;

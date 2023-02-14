@@ -1,4 +1,4 @@
-package Fourth;
+package functionalinterface;
 
 // Type         parameter   return value    method
 // Predicate    O           boolean         test()

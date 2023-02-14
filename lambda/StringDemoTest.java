@@ -1,7 +1,6 @@
-package third;
+package lambda;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class StringDemoTest {
     public static void main(String[] args) {

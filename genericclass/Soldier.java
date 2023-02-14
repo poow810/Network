@@ -1,4 +1,4 @@
-package first;
+package genericclass;
 
 public class Soldier {
 }

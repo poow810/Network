@@ -1,6 +1,5 @@
-package third;
+package lambda;
 
-import javax.swing.plaf.metal.MetalIconFactory;
 import java.util.Arrays;
 
 class Circle implements Comparable{

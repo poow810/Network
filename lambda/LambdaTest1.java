@@ -1,4 +1,4 @@
-package third;
+package lambda;
 //Lambda Expression (람다식)
 //- 익명 메서드 (일반 메서드와 달리 이름이 없음)
 //- 메서드와 달리 특정 클래스에 종속 x, 매개변수, 리턴타입, 본체를 가짐

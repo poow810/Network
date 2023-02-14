@@ -1,4 +1,4 @@
-package third;
+package lambda;
 
 interface Calc{
     double calculate(double b);

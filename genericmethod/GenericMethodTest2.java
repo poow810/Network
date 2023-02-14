@@ -1,4 +1,4 @@
-package second;
+package genericmethod;
 
 public class GenericMethodTest2 {
     static class Prints {

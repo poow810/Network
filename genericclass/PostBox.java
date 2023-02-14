@@ -1,4 +1,4 @@
-package first;
+package genericclass;
 
 public class PostBox<T> {  // generic class -> <> type을 정의
     private T item;     // 자료 type을 정의함
