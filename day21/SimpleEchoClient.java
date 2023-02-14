@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -11,8 +12,7 @@ import java.util.Scanner;
 public class SimpleEchoClient {
     public static void main(String[] args) {
         System.out.println("에코 클라이언트 시작됨");
-        //            InetAddress localAddress = InetAddress.getLocalHost(); // 127.0.0.1
-        try (Socket clientSocket = new Socket("165.246.115.165", 20000);
+        try (Socket clientSocket = new Socket(InetAddress.getLocalHost(), 20000);
              PrintWriter pw = new PrintWriter(clientSocket.getOutputStream(), true);
              BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
 
