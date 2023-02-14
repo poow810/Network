@@ -35,7 +35,7 @@ public class SimpleEchoClient {
                     }
                     pw.println(line); // 서버로 전송
                     // 서버로부터 수신받은 객체에서 라인 단위로 문자열 리턴
-                    System.out.println("서버로부터 받은 메아리 : " + br.readLine());
+                    System.out.println("서버로부터 받은 메세지 : " + br.readLine());
                 }
 
             } catch (IOException ex) {

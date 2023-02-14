@@ -6,7 +6,7 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 
 public class TimeClient {   // Multicast Client
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         System.out.println("멀티캐스트 타임 클라이언트");
         try (MulticastSocket socket = new MulticastSocket(10000))
         {
