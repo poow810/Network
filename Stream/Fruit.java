@@ -1,6 +1,6 @@
 package Stream;
 
-public class Fruit {
+public class Fruit implements Comparable<Fruit>{
     private String name;
     private Integer price;
 
@@ -15,5 +15,10 @@ public class Fruit {
 
     public Integer getPrice() {
         return price;
+    }
+
+    @Override
+    public int compareTo(Fruit o) {
+        return this.price - o.price;
     }
 }
