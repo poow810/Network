@@ -65,20 +65,21 @@ public class Day23_homework {
         streams = ages.stream();
         System.out.println(
                 ages.stream()
-                        .mapToInt(n->n.intValue())
+                        .mapToInt(n-> n)
                         .average()
                         .getAsDouble()
         );
-
+        System.out.println("[Member 스트림 원소]");
         stream = names.stream();
-        Stream<Member> sm = stream.map(n -> new Member(n, genders.get(i), ages.get(i++)));
-        sm.forEach(m -> System.out.print(m + " "));
+        Stream<Member> member = stream.map(n -> new Member(n, genders.get(i), ages.get(i++)));
+        member.forEach(m -> System.out.print(m + " "));
         System.out.println();
 
         i = 0;
+        System.out.println("[Member 스트림을 성별로 그룹핑]");
         stream = names.stream();
-        sm = stream.map(n -> new Member(n, genders.get(i), ages.get(i++)));
-        Map<Gender, List<Member>> map = sm.collect(Collectors.groupingBy(Member::getGender));
+        member = stream.map(n -> new Member(n, genders.get(i), ages.get(i++)));
+        Map<Gender, List<Member>> map = member.collect(Collectors.groupingBy(Member::getGender));
         System.out.println(map);
     }
     }
