@@ -1,4 +1,4 @@
-package simplegame;
+package Diablo;
 
 public class Bow implements WeaponBehavior{
 

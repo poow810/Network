@@ -1,4 +1,4 @@
-package simplegame;
+package Diablo;
 
 public class Axe implements WeaponBehavior{
     @Override

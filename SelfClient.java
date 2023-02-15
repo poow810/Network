@@ -13,6 +13,8 @@ public class SelfClient {
             Socket clientSocket = null;
             PrintWriter pw = null;
             BufferedReader br = null;
+
+            // getOutputStream과 getInputStream으로 서버와 클라이언트의
             try{
                 clientSocket = new Socket(InetAddress.getLocalHost(), 6000);
                 pw = new PrintWriter(clientSocket.getOutputStream(), true); // 자동으로 출력
