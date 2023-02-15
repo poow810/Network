@@ -1,22 +1,30 @@
 package Diablo;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+enum Gender{
+    남, 여;
+}
+
 
 public class Day23_homework {
     public static void main(String[] args) {
-        List<String> names = List.of("홍길동", "배장화", "임꺽정", "연흥부", "김선달", "황진이");
-        Stream<String> stream = names.stream();
-        stream.filter(n -> n.charAt(0) < '이').forEach(n -> System.out.print(n+" "));
-        System.out.println();
 
-        stream = names.stream();
-        stream.sorted().forEach(n -> System.out.print(n+ " "));
-        System.out.println();
+        List<Integer> ages = List.of(25, 20, 29, 28, 32, 18);
+        List<Gender> genders = List.of(Gender.남, Gender.여, Gender.남, Gender.남, Gender.남, Gender.여);
 
-        stream = names.stream();
-        System.out.println(names.stream().findFirst());
-        System.out.println(names.stream().findFirst().get());
-        System.out.println(stream.count());
+        Stream<Integer> stream = ages.stream();
+        System.out.println(stream.reduce(0, Integer::sum));
+        stream = ages.stream();
+        System.out.println(stream.max(Integer::compareTo).get());
+        stream = ages.stream();
+        System.out.println(
+                ages.stream()
+                        .mapToInt(n->n.intValue())
+                        .average()
+                        .getAsDouble()
+        );
     }
 }
