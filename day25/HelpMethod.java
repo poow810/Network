@@ -39,7 +39,7 @@ public class HelpMethod {
         try {
             ByteBuffer buffer = ByteBuffer.allocate(message.length() + 1);
             buffer.put(message.getBytes());
-            buffer.put((byte) 0x00);  //NULL
+            buffer.put((byte) 0x00);  // 문자열의 끝을 확인하기 위해 NULL 문자 넣어줌
             buffer.flip();
             while (buffer.hasRemaining()) {
                 socketChannel.write(buffer);
