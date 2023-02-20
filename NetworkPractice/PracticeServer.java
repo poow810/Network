@@ -1,44 +1,34 @@
 package NetworkPractice;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
 
+import java.io.IOException;
+import java.net.*;
+import java.util.Date;
 
 public class PracticeServer {
     public static void main(String[] args) {
-        System.out.println("Simple Echo Server");
-        try (ServerSocket serverSocket = new ServerSocket(6000)) {
-            System.out.println("Waiting for connection.....");
-            Socket clientSocket = serverSocket.accept();
-            System.out.println("Connected to client");
+        System.out.println("멀티캐스트 타임 서버");
+        DatagramSocket serverSocket = null;
+        try{
+            serverSocket = new DatagramSocket();
+            while (true) {
+                String dateText = new Date().toString();
+                byte[] buffer = new byte[256];
+                buffer = dateText.getBytes();
 
-            BufferedReader br = null;
-            PrintWriter out = null;
+                InetAddress group = InetAddress.getByName("224.0.0.117");
+                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, 10000);
+                serverSocket.send(packet);
+                System.out.println("전송된 시간: " + dateText);
 
-            try {
-                br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                out = new PrintWriter(clientSocket.getOutputStream(), true);
-                String inputLine;
-                while ((inputLine = br.readLine()) != null) {
-                    System.out.println("Server: " + inputLine);
-                    out.println(inputLine); // 서버에서 클라이언트로 송신
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } finally{
-                if (br != null) {
-                    br.close();
-                }
-                if (out != null) {
-                    out.close();    // 스트림 닫아줘야함
+                try{
+                    Thread.sleep(5000);
+                }catch (InterruptedException e){
+                    throw new RuntimeException();
                 }
             }
+
         } catch (IOException e) {
-            System.out.println("접속 실패");
         }
     }
 }
