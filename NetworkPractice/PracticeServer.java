@@ -1,34 +1,50 @@
 package NetworkPractice;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.*;
-import java.util.Date;
 
-public class PracticeServer {
-    public static void main(String[] args) {
-        System.out.println("멀티캐스트 타임 서버");
-        DatagramSocket serverSocket = null;
-        try{
-            serverSocket = new DatagramSocket();
-            while (true) {
-                String dateText = new Date().toString();
-                byte[] buffer = new byte[256];
-                buffer = dateText.getBytes();
+import static java.lang.System.out;
 
-                InetAddress group = InetAddress.getByName("224.0.0.117");
-                DatagramPacket packet = new DatagramPacket(buffer, buffer.length, group, 10000);
-                serverSocket.send(packet);
-                System.out.println("전송된 시간: " + dateText);
+public class PracticeServer implements Runnable {
+    private static Socket clientSocket;
 
-                try{
-                    Thread.sleep(5000);
-                }catch (InterruptedException e){
-                    throw new RuntimeException();
-                }
+    public PracticeServer(Socket clientSocket) {
+        this.clientSocket = clientSocket;
+    }
+
+    @Override
+    public void run() {
+        out.println("클라이언트 연결됨" + Thread.currentThread());
+        try (
+                BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                PrintWriter pw = new PrintWriter(clientSocket.getOutputStream(), true)) {
+            String inputLine;
+            while ((inputLine = br.readLine()) != null) {
+                out.println("클라이언트 요청" + Thread.currentThread() + inputLine);
+                out.println(inputLine);
             }
-
+            out.println("Client 연결됨" + Thread.currentThread());
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    public static void main(String[] args) {
+        out.println("쓰레드 에코 서버 시작");
+        try (
+                ServerSocket serverSocket = new ServerSocket(6000)) {
+            out.println("연결 기다리는중");
+            clientSocket = serverSocket.accept();
+            PracticeServer tes = new PracticeServer(clientSocket);
+            new Thread(tes).start();
+        } catch (IOException e) {
+            out.println("오류 발생");
         }
     }
 }

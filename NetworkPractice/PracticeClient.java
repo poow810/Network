@@ -1,6 +1,10 @@
 package NetworkPractice;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -8,43 +12,43 @@ import java.util.Scanner;
 
 public class PracticeClient {
     public static void main(String[] args) {
-        System.out.println("에코 클라이언트 실행");
+        System.out.println("심플 에코 클라이언트");
+        PrintWriter pw = null;
+        BufferedReader br = null;
         try {
-            InetAddress localAddress = InetAddress.getLocalHost();
-            Socket clientSocket = null;
-            BufferedReader br = null;
-            PrintWriter out = null;
+            System.out.println("연결 대기 중");
+            InetAddress localAdress = InetAddress.getLocalHost();
             try {
-                clientSocket = new Socket(InetAddress.getLocalHost(), 6000);
+                Socket clientSocket = new Socket(localAdress, 6000);
+                pw = new PrintWriter(clientSocket.getOutputStream(), true);
                 br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                out = new PrintWriter(clientSocket.getOutputStream(), true);
-
-                System.out.println("서버에 연결됨");
+                System.out.println("서버와 연결됨");
                 Scanner in = new Scanner(System.in);
                 while (true) {
-                    System.out.println("전송 메세지 입력 : ");
-                    String line = in.nextLine();
-                    if ("quit".equalsIgnoreCase(line)) {
+                    System.out.println("Enter text : ");
+                    String inputLine = in.nextLine();
+                    if ("quit".equalsIgnoreCase(inputLine)) {
                         break;
                     }
-                    out.println(line);  // 클라이언트에서 서버로 전송
-                    System.out.println("서버로부터 받은 메세지 : " + br.readLine());
+                    System.out.println(inputLine);
+                    String response = br.readLine();
+                    System.out.println(response);
                 }
             } catch (IOException e) {
-                System.out.println("입출력 예외 발생");
-            } finally {
-                if (clientSocket != null) {
-                    clientSocket.close();
-                }
+                throw new RuntimeException(e);
+            }
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (pw != null) {
+                pw.close();
+            }
+            try {
                 if (br != null) {
                     br.close();
                 }
-                if (out != null) {
-                    out.close();
-                }
+            } catch (IOException e) {
             }
-        } catch (IOException e) {
-            throw new RuntimeException();
         }
     }
 }

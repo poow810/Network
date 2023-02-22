@@ -25,14 +25,14 @@ public class ChatServer {
                 Scanner scanner = new Scanner(System.in);
                 while (true) {
                     System.out.print("> ");
-                    message = scanner.nextLine();
+                    message = scanner.nextLine(); // response 사용
                     if (message.equalsIgnoreCase("quit")) {
                         HelpMethod.sendFixedLengthMessage(
                                 socketChannel, "Server terminating");
                         running = false;
                         break;
                     } else {
-//                        HelperMethods.sendFixedLengthMessage(
+//                        HelperMethods.sendFixedLengthMessage(  //
 //                                socketChannel, message);
                         HelpMethod.sendMessage(socketChannel, message);
                         // Receive message
